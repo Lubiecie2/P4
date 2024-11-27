@@ -4,13 +4,13 @@ class Matrix {
 
 public: 
 
-	int** wsm;    // <--- WskaŸnik na macierz
+	int** wsm;    // <--- Wskaznik na macierz
 	int rozmiar;  //<--- Rozmiar macierzy
 
-    Matrix();                         // <--- konstruktor domyœlny
+    Matrix();                         // <--- konstruktor domyslny
     Matrix(int n);                    // <--- konstruktor z rozmiarem
-    Matrix(int n, int* t);            // <--- konstruktor z tablic¹
-    Matrix(const Matrix& m);          // <--- konstruktor kopiuj¹cy
+    Matrix(int n, int* t);            // <--- konstruktor z tablica
+    Matrix(const Matrix& m);          // <--- konstruktor kopiujacy
     ~Matrix();                        // <--- Destruktor 
 
 
@@ -26,4 +26,6 @@ public:
     Matrix& pod_przekatna(void);
     Matrix& nad_przekatna(void);
 
+    Matrix& operator+=(int a);
+    Matrix& operator-=(int a);
 };

@@ -5,9 +5,9 @@
 
 
 
-Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyœlny 
+Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
 
-Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokuj¹cy pamiêæ 
+Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec 
     if (n > 0) {
         rozmiar = n;
         wsm = new int* [rozmiar];
@@ -20,7 +20,7 @@ Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor aloku
     }
 }
 
-Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor alokuj¹cy pamiêæ i inicjalizuj¹cy wartoœci
+Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor alokujacy pamiec i inicjalizujacy wartosci
     if (n > 0) {
         rozmiar = n;
         wsm = new int* [rozmiar];
@@ -33,7 +33,7 @@ Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor 
     }
 }
 
-Matrix::Matrix(const Matrix& m) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor kopiuj¹cy 
+Matrix::Matrix(const Matrix& m) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor kopiujacy 
     if (m.rozmiar > 0) {
         rozmiar = m.rozmiar;
         wsm = new int* [rozmiar];
@@ -59,19 +59,19 @@ Matrix::~Matrix() {          // <--- Destruktor
 
 Matrix& Matrix::Macierz_Alokacja(int n) {
     
-    if (wsm) {               // <--- instrukcja sprawdza czy macierz ma ju¿ zaalokowan¹ pamiêæ 
-        if (rozmiar != n) {    // <--- instrukcja sprawdza czy nowy rozmiar jest inny ni¿ poprzedni
+    if (wsm) {               // <--- instrukcja sprawdza czy macierz ma juz zaalokowana pamiec 
+        if (rozmiar != n) {    // <--- instrukcja sprawdza czy nowy rozmiar jest inny niz poprzedni
             
-            for (int i = 0; i < rozmiar; ++i) {   // <--- Jeœli rozmiar jest inny ni¿ porzedni to pêtla 
-                delete[] wsm[i];                  //      zwalnia pamiêæ 
+            for (int i = 0; i < rozmiar; ++i) {   // <--- Jesli rozmiar jest inny niz porzedni to petla 
+                delete[] wsm[i];                  //      zwalnia pamiec 
             }
             delete[] wsm;
-            wsm = nullptr;  // <--- Ustawiany jest wskaŸnik na nullptr
+            wsm = nullptr;  // <--- Ustawiany jest wskaznik na nullptr
             rozmiar = 0;    // <--- Zerowanie rozmiaru
         }
     }
 
-    if (rozmiar != n) {             // <--- Instrukcja alokuje pamiêæ w nowym rozmiarze jeœli nie ma zaalokowanej
+    if (rozmiar != n) {             // <--- Instrukcja alokuje pamiec w nowym rozmiarze jesli nie ma zaalokowanej
         rozmiar = n;                //      lub po zwolnieniu starej
         wsm = new int* [rozmiar];
         for (int i = 0; i < rozmiar; ++i) {
@@ -83,9 +83,9 @@ Matrix& Matrix::Macierz_Alokacja(int n) {
 }
 
 Matrix& Matrix::Macierz_Odwroc() {
-    for (int i = 0; i < rozmiar; ++i) {          // <--- Pêtla do wierszy
-        for (int j = i + 1; j < rozmiar; ++j) {  // <--- Pêtla do kolumn 
-            std::swap(wsm[i][j], wsm[j][i]);  // <--- Zamiana elementów w macierzy 
+    for (int i = 0; i < rozmiar; ++i) {          // <--- Petla do wierszy
+        for (int j = i + 1; j < rozmiar; ++j) {  // <--- Petla do kolumn 
+            std::swap(wsm[i][j], wsm[j][i]);  // <--- Zamiana elementow w macierzy 
         }
     }
     return *this;  // <--- Zwracana jest referencja do obiektu 
@@ -99,19 +99,19 @@ Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
             wsm[i][j] = std::rand() % 10;  // Losujemy liczby z zakresu 0-9
         }
     }
-    return *this;  // Zwracamy referencjê do obiektu
+    return *this;  // Zwracamy referencje do obiektu
 }
 
 Matrix& Matrix::wstaw(int x, int y, int wartosc) {
 	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
-		wsm[x][y] = wartosc;  // <--- Wstawianie wartoœci do macierzy 
+		wsm[x][y] = wartosc;  // <--- Wstawianie wartosci do macierzy 
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
 int Matrix::pokaz(int x, int y) {
 	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
-		return wsm[x][y];  // <--- Zwracanie wartoœci z macierzy 
+		return wsm[x][y];  // <--- Zwracanie wartosci z macierzy 
 	}
 	return 0;
 }
@@ -137,7 +137,7 @@ Matrix& Matrix::wiersz(int y, int* t) {
 Matrix& Matrix::przekatna(void) {
     for (int i = 0; i < rozmiar; ++i) {
         for (int j = 0; j < rozmiar; ++j) {
-			wsm[i][j] = (i == j) ? 1 : 0;  // <--- Wstawianie wartoœci na przek¹tnej
+			wsm[i][j] = (i == j) ? 1 : 0;  // <--- Wstawianie wartosci na przekatnej
         }
     }
 	return *this;  // <--- Zwracana jest referencja do obiektu
@@ -146,7 +146,7 @@ Matrix& Matrix::przekatna(void) {
 Matrix& Matrix::pod_przekatna(void) {
     for (int i = 0; i < rozmiar; ++i) {
         for (int j = 0; j < rozmiar; ++j) {
-            wsm[i][j] = (i > j) ? 1 : 0;  // <--- Wstawianie wartoœci pod przek¹tn¹
+            wsm[i][j] = (i > j) ? 1 : 0;  // <--- Wstawianie wartosci pod przekatna
         }
     }
 	return *this;  // <--- Zwracana jest referencja do obiektu
@@ -155,7 +155,7 @@ Matrix& Matrix::pod_przekatna(void) {
 Matrix& Matrix::nad_przekatna(void) {
 	for (int i = 0; i < rozmiar; ++i) {
 		for (int j = 0; j < rozmiar; ++j) {
-			wsm[i][j] = (i < j) ? 1 : 0;  // <--- Wstawianie wartoœci nad przek¹tn¹
+			wsm[i][j] = (i < j) ? 1 : 0;  // <--- Wstawianie wartosci nad przekatna
 		}
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu
@@ -170,5 +170,23 @@ Matrix& Matrix::losuj(int x) {
             wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <Losujemy liczby z zakresu 0-9>--
         }
     }
-    return *this; // Zwracamy referencjê do obiektu
+    return *this; // Zwracamy referencje do obiektu
+}
+
+Matrix& Matrix::operator+=(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] += a;  // <--- Dodawanie wartosci do macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator-=(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] -= a;  // <--- Odejmowanie wartosci od macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
