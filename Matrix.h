@@ -16,4 +16,5 @@ public:
 
     Matrix& Macierz_Alokacja(int n);
     Matrix& Macierz_Odwroc();
+    Matrix& Macierz_Losowa_wartosc_0_9();
 };

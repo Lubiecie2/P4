@@ -80,10 +80,20 @@ Matrix& Matrix::Macierz_Alokacja(int n) {
 }
 
 Matrix& Matrix::Macierz_Odwroc() {
-    for (int i = 0; i < rozmiar; ++i) {
-        for (int j = i + 1; j < rozmiar; ++j) {
+    for (int i = 0; i < rozmiar; ++i) {          // <--- Pêtla do wierszy
+        for (int j = i + 1; j < rozmiar; ++j) {  // <--- Pêtla do kolumn 
             std::swap(wsm[i][j], wsm[j][i]);  // <--- Zamiana elementów w macierzy 
         }
     }
     return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
+    
+    for (int i = 0; i < rozmiar; ++i) {
+        for (int j = 0; j < rozmiar; ++j) {
+            wsm[i][j] = std::rand() % 10;  // Losujemy liczby z zakresu 0-9
+        }
+    }
+    return *this;  // Zwracamy referencjê do obiektu
 }
