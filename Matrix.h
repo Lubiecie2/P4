@@ -16,16 +16,14 @@ public:
 
     Matrix& Macierz_Alokacja(int n);
     Matrix& Macierz_Odwroc();
-<<<<<<< HEAD
     Matrix& Macierz_Losowa_wartosc_0_9();
-=======
-
-	Matrix& wstaw(int x, int y, int wartosc);
+    Matrix& losuj(int x);
+    Matrix& wstaw(int x, int y, int wartosc);
     int pokaz(int x, int y);
     Matrix& kolumna(int x, int* t);
     Matrix& wiersz(int y, int* t);
     Matrix& przekatna(void);
     Matrix& pod_przekatna(void);
     Matrix& nad_przekatna(void);
->>>>>>> origin/Branch_HJ
+
 };

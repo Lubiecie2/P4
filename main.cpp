@@ -70,5 +70,16 @@ int main()
 		}
 		cout << endl;
 	}
+
+	cout << "Losowe liczby: " << endl;
+	macierz.losuj(3);
+
+	cout << "Macierz wyglada następujaco: " << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << macierz.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
 	return 0;
 }

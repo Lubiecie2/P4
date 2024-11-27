@@ -1,5 +1,9 @@
 #include "Matrix.h"
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+
 
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyœlny 
 
@@ -87,7 +91,7 @@ Matrix& Matrix::Macierz_Odwroc() {
     return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
-<<<<<<< HEAD
+
 Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
     
     for (int i = 0; i < rozmiar; ++i) {
@@ -97,7 +101,7 @@ Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
     }
     return *this;  // Zwracamy referencjê do obiektu
 }
-=======
+
 Matrix& Matrix::wstaw(int x, int y, int wartosc) {
 	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
 		wsm[x][y] = wartosc;  // <--- Wstawianie wartoœci do macierzy 
@@ -156,4 +160,15 @@ Matrix& Matrix::nad_przekatna(void) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu
 }
->>>>>>> origin/Branch_HJ
+
+Matrix& Matrix::losuj(int x) {
+    if (rozmiar > 0 && x > 0) {
+		std::srand(std::time(nullptr)); // <--- Inicjalizacja generatora liczb pseudolosowych
+        for (int i = 0; i < x; ++i) {
+            int LosowyWiersz = std::rand() % rozmiar;
+            int LosowaKolumna = std::rand() % rozmiar;
+            wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <Losujemy liczby z zakresu 0-9>--
+        }
+    }
+    return *this; // Zwracamy referencjê do obiektu
+}
