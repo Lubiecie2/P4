@@ -29,7 +29,6 @@ Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor 
     }
 }
 
-
 Matrix::Matrix(const Matrix& m) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor kopiuj¹cy 
     if (m.rozmiar > 0) {
         rozmiar = m.rozmiar;
@@ -88,6 +87,7 @@ Matrix& Matrix::Macierz_Odwroc() {
     return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
+<<<<<<< HEAD
 Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
     
     for (int i = 0; i < rozmiar; ++i) {
@@ -97,3 +97,63 @@ Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
     }
     return *this;  // Zwracamy referencjê do obiektu
 }
+=======
+Matrix& Matrix::wstaw(int x, int y, int wartosc) {
+	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
+		wsm[x][y] = wartosc;  // <--- Wstawianie wartoœci do macierzy 
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+int Matrix::pokaz(int x, int y) {
+	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
+		return wsm[x][y];  // <--- Zwracanie wartoœci z macierzy 
+	}
+	return 0;
+}
+
+Matrix& Matrix::kolumna(int x, int* t) {
+	if (x >= 0 && x < rozmiar) {
+		for (int i = 0; i < rozmiar; ++i) {
+			wsm[i][x] = t[i];  // <--- Wstawianie wartoœci do kolumny 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::wiersz(int y, int* t) {
+	if (y >= 0 && y < rozmiar) {
+		for (int i = 0; i < rozmiar; ++i) {
+			wsm[y][i] = t[i];  // <--- Wstawianie wartoœci do wiersza 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::przekatna(void) {
+    for (int i = 0; i < rozmiar; ++i) {
+        for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] = (i == j) ? 1 : 0;  // <--- Wstawianie wartoœci na przek¹tnej
+        }
+    }
+	return *this;  // <--- Zwracana jest referencja do obiektu
+}
+
+Matrix& Matrix::pod_przekatna(void) {
+    for (int i = 0; i < rozmiar; ++i) {
+        for (int j = 0; j < rozmiar; ++j) {
+            wsm[i][j] = (i > j) ? 1 : 0;  // <--- Wstawianie wartoœci pod przek¹tn¹
+        }
+    }
+	return *this;  // <--- Zwracana jest referencja do obiektu
+}
+
+Matrix& Matrix::nad_przekatna(void) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] = (i < j) ? 1 : 0;  // <--- Wstawianie wartoœci nad przek¹tn¹
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu
+}
+>>>>>>> origin/Branch_HJ
