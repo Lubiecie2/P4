@@ -190,3 +190,30 @@ Matrix& Matrix::operator-=(int a) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
+
+Matrix& Matrix::operator++(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j]++;  // <--- Inkrementacja wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator--(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j]--;  // <--- Dekrementacja wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator*=(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] *= a;  // <--- Mnozenie wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}

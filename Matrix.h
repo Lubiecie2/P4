@@ -26,6 +26,11 @@ public:
     Matrix& pod_przekatna(void);
     Matrix& nad_przekatna(void);
 
+    Matrix& operator++(int a);
+	Matrix& operator--(int a);
     Matrix& operator+=(int a);
     Matrix& operator-=(int a);
+	Matrix& operator*=(int a);
+
+
 };
