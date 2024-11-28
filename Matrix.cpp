@@ -217,3 +217,12 @@ Matrix& Matrix::operator*=(int a) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
+
+Matrix& Matrix::szachownica(void) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] = (i + j) % 2;  // <--- Wstawianie wartosci do macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
