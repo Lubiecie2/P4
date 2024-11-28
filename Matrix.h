@@ -27,8 +27,8 @@ public:
     Matrix& nad_przekatna(void);
     Matrix& szachownica(void);
 
-    Matrix& operator++(int a);
-	Matrix& operator--(int a);
+    Matrix& operator++(int);
+	Matrix& operator--(int);
     Matrix& operator+=(int a);
     Matrix& operator-=(int a);
 	Matrix& operator*=(int a);
