@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 
-
+// Konstruktory
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
 
 Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec 
@@ -46,7 +46,9 @@ Matrix::Matrix(const Matrix& m) : wsm(nullptr), rozmiar(0) {  // <--- Konstrukto
     }
 }
 
-Matrix::~Matrix() {          // <--- Destruktor 
+// Destruktor
+
+Matrix::~Matrix() {
     if (wsm) {
         for (int i = 0; i < rozmiar; ++i) {
             delete[] wsm[i]; 
@@ -56,6 +58,8 @@ Matrix::~Matrix() {          // <--- Destruktor
         rozmiar = 0; 
     }
 }   
+
+// Zarzadzanie pamiecia macierzy
 
 Matrix& Matrix::Macierz_Alokacja(int n) {
     
@@ -82,6 +86,24 @@ Matrix& Matrix::Macierz_Alokacja(int n) {
     return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
+// Operacje na elementach macierzy
+
+Matrix& Matrix::wstaw(int x, int y, int wartosc) {
+	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
+		wsm[x][y] = wartosc;  // <--- Wstawianie wartosci do macierzy 
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+int Matrix::pokaz(int x, int y) {
+	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
+		return wsm[x][y];  // <--- Zwracanie wartosci z macierzy 
+	}
+	return 0;
+}
+
+//Transformacje macierzy
+
 Matrix& Matrix::Macierz_Odwroc() {
     for (int i = 0; i < rozmiar; ++i) {          // <--- Petla do wierszy
         for (int j = i + 1; j < rozmiar; ++j) {  // <--- Petla do kolumn 
@@ -102,18 +124,26 @@ Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
     return *this;  // Zwracamy referencje do obiektu
 }
 
-Matrix& Matrix::wstaw(int x, int y, int wartosc) {
-	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
-		wsm[x][y] = wartosc;  // <--- Wstawianie wartosci do macierzy 
+Matrix& Matrix::losuj(int x) {
+	if (rozmiar > 0 && x > 0) {
+		std::srand(std::time(nullptr)); // <--- Inicjalizacja generatora liczb pseudolosowych
+		for (int i = 0; i < x; ++i) {
+			int LosowyWiersz = std::rand() % rozmiar;
+			int LosowaKolumna = std::rand() % rozmiar;
+			wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <Losujemy liczby z zakresu 0-9>--
+		}
 	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
+	return *this; // Zwracamy referencje do obiektu
 }
 
-int Matrix::pokaz(int x, int y) {
-	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
-		return wsm[x][y];  // <--- Zwracanie wartosci z macierzy 
-	}
-	return 0;
+// Uklady macierzy
+
+Matrix& Matrix::diagonalna(int* t) {
+
+}
+
+Matrix& Matrix::diagonalna_k(int k, int* t) {
+	
 }
 
 Matrix& Matrix::kolumna(int x, int* t) {
@@ -161,68 +191,39 @@ Matrix& Matrix::nad_przekatna(void) {
 	return *this;  // <--- Zwracana jest referencja do obiektu
 }
 
-Matrix& Matrix::losuj(int x) {
-    if (rozmiar > 0 && x > 0) {
-		std::srand(std::time(nullptr)); // <--- Inicjalizacja generatora liczb pseudolosowych
-        for (int i = 0; i < x; ++i) {
-            int LosowyWiersz = std::rand() % rozmiar;
-            int LosowaKolumna = std::rand() % rozmiar;
-            wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <Losujemy liczby z zakresu 0-9>--
-        }
-    }
-    return *this; // Zwracamy referencje do obiektu
-}
-
-Matrix& Matrix::operator+=(int a) {
-	for (int i = 0; i < rozmiar; ++i) {
-		for (int j = 0; j < rozmiar; ++j) {
-			wsm[i][j] += a;  // <--- Dodawanie wartosci do macierzy 
-		}
-	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
-}
-
-Matrix& Matrix::operator-=(int a) {
-	for (int i = 0; i < rozmiar; ++i) {
-		for (int j = 0; j < rozmiar; ++j) {
-			wsm[i][j] -= a;  // <--- Odejmowanie wartosci od macierzy 
-		}
-	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
-}
-
-Matrix& Matrix::operator++(int) {
-	for (int i = 0; i < rozmiar; ++i) {
-		for (int j = 0; j < rozmiar; ++j) {
-			wsm[i][j]++;  // <--- Inkrementacja wartosci macierzy 
-		}
-	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
-}
-
-Matrix& Matrix::operator--(int) {
-    for (int i = 0; i < rozmiar; ++i) {
-        for (int j = 0; j < rozmiar; ++j) {
-            wsm[i][j]--;  // <--- Dekrementacja wartosci macierzy 
-        }
-    }
-    return *this;  // <--- Zwracana jest referencja do obiektu
-}
-
-Matrix& Matrix::operator*=(int a) {
-	for (int i = 0; i < rozmiar; ++i) {
-		for (int j = 0; j < rozmiar; ++j) {
-			wsm[i][j] *= a;  // <--- Mnozenie wartosci macierzy 
-		}
-	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
-}
-
 Matrix& Matrix::szachownica(void) {
 	for (int i = 0; i < rozmiar; ++i) {
 		for (int j = 0; j < rozmiar; ++j) {
 			wsm[i][j] = (i + j) % 2;  // <--- Wstawianie wartosci do macierzy 
 		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+// Operacje matematyczne na macierzy
+
+Matrix& Matrix::operator+(Matrix& m) {
+	if (rozmiar == m.rozmiar) {
+		for (int i = 0; i < rozmiar; ++i) {
+			for (int j = 0; j < rozmiar; ++j) {
+				wsm[i][j] += m.wsm[i][j];  // <--- Dodawanie macierzy 
+			}
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator*(Matrix& m) {
+	if (rozmiar == m.rozmiar) {
+		Matrix temp(rozmiar);
+		for (int i = 0; i < rozmiar; ++i) {
+			for (int j = 0; j < rozmiar; ++j) {
+				for (int k = 0; k < rozmiar; ++k) {
+					temp.wsm[i][j] += wsm[i][k] * m.wsm[k][j];  // <--- Mnozenie macierzy 
+				}
+			}
+		}
+		*this = temp;
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
@@ -254,40 +255,79 @@ Matrix& Matrix::operator-(int a) {
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
-Matrix& Matrix::operator+(Matrix& m) {
-	if (rozmiar == m.rozmiar) {
-		for (int i = 0; i < rozmiar; ++i) {
-			for (int j = 0; j < rozmiar; ++j) {
-				wsm[i][j] += m.wsm[i][j];  // <--- Dodawanie macierzy 
-			}
-		}
-	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
-}
-
-Matrix& Matrix::operator*(Matrix& m) {
-	if (rozmiar == m.rozmiar) {
-		Matrix temp(rozmiar);
-		for (int i = 0; i < rozmiar; ++i) {
-			for (int j = 0; j < rozmiar; ++j) {
-				for (int k = 0; k < rozmiar; ++k) {
-					temp.wsm[i][j] += wsm[i][k] * m.wsm[k][j];  // <--- Mnozenie macierzy 
-				}
-			}
-		}
-		*this = temp;
-	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
-}
-
 Matrix operator+(int a, Matrix& m) {
-	return m + a;  // <--- Dodawanie liczby do macierzy 
+
 }
 
 Matrix operator*(int a, Matrix& m) {
-	return m * a;  // <--- Mnozenie macierzy przez liczbe 
+
 }
 
 Matrix operator-(int a, Matrix& m) {
-	return m - a;  // <--- Odejmowanie liczby od macierzy 
+
+}
+
+Matrix& Matrix::operator++(int) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j]++;  // <--- Inkrementacja wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator--(int) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j]--;  // <--- Dekrementacja wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu
+}
+
+Matrix& Matrix::operator+=(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] += a;  // <--- Dodawanie wartosci do macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator-=(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] -= a;  // <--- Odejmowanie wartosci od macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator*=(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] *= a;  // <--- Mnozenie wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator(double) {
+
+}
+
+bool Matrix::operator==(const Matrix& m) {
+
+}
+
+bool Matrix::operator>(const Matrix& m) {
+
+}
+
+bool Matrix::operator<(const Matrix& m) {
+
+}
+
+std::ostream& operator<<(std::ostream& o, Matrix& m) {
+
 }
