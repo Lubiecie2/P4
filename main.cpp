@@ -135,5 +135,58 @@ int main()
 		}
 		cout << endl;
 	}
+	cout << "Dodawanie macierzy: " << endl;
+	Matrix macierz2(3);
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			macierz2.wstaw(i, j, i + j);
+			cout << macierz2.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
+	macierz.operator+(macierz2);
+	cout << "Macierz wyglada nastepujaco: " << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << macierz.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
+	cout << "Mnozenie macierzy: " << endl;
+	macierz.operator*(macierz2);
+	cout << "Macierz wyglada nastepujaco: " << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << macierz.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
+	cout << "Dodawanie liczby do macierzy: " << endl;
+	macierz.operator+(5);
+	cout << "Macierz wyglada nastepujaco: " << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << macierz.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
+	cout << "Mnozenie macierzy przez liczbe: " << endl;
+	macierz.operator*(5);
+	cout << "Macierz wyglada nastepujaco: " << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << macierz.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
+	cout << "Odejmowanie liczby od macierzy: " << endl;
+	macierz.operator-(5);
+	cout << "Macierz wyglada nastepujaco: " << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << macierz.pokaz(i, j) << " ";
+		}
+		cout << endl;
+	}
 	return 0;
 }

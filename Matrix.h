@@ -13,7 +13,6 @@ public:
     Matrix(const Matrix& m);          // <--- konstruktor kopiujacy
     ~Matrix();                        // <--- Destruktor 
 
-
     Matrix& Macierz_Alokacja(int n);
     Matrix& Macierz_Odwroc();
     Matrix& Macierz_Losowa_wartosc_0_9();
@@ -26,6 +25,16 @@ public:
     Matrix& pod_przekatna(void);
     Matrix& nad_przekatna(void);
     Matrix& szachownica(void);
+
+    Matrix& operator+(Matrix& m);
+    Matrix& operator*(Matrix& m);
+    Matrix& operator+(int a);
+    Matrix& operator*(int a);
+    Matrix& operator-(int a);
+
+    friend Matrix operator+(int a, Matrix& m);
+	friend Matrix operator*(int a, Matrix& m);
+	friend Matrix operator-(int a, Matrix& m);
 
     Matrix& operator++(int);
 	Matrix& operator--(int);

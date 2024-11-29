@@ -226,3 +226,68 @@ Matrix& Matrix::szachownica(void) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
+
+Matrix& Matrix::operator+(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] += a;  // <--- Dodawanie wartosci do macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator*(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] *= a;  // <--- Mnozenie wartosci macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator-(int a) {
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] -= a;  // <--- Odejmowanie wartosci od macierzy 
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator+(Matrix& m) {
+	if (rozmiar == m.rozmiar) {
+		for (int i = 0; i < rozmiar; ++i) {
+			for (int j = 0; j < rozmiar; ++j) {
+				wsm[i][j] += m.wsm[i][j];  // <--- Dodawanie macierzy 
+			}
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix& Matrix::operator*(Matrix& m) {
+	if (rozmiar == m.rozmiar) {
+		Matrix temp(rozmiar);
+		for (int i = 0; i < rozmiar; ++i) {
+			for (int j = 0; j < rozmiar; ++j) {
+				for (int k = 0; k < rozmiar; ++k) {
+					temp.wsm[i][j] += wsm[i][k] * m.wsm[k][j];  // <--- Mnozenie macierzy 
+				}
+			}
+		}
+		*this = temp;
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
+}
+
+Matrix operator+(int a, Matrix& m) {
+	return m + a;  // <--- Dodawanie liczby do macierzy 
+}
+
+Matrix operator*(int a, Matrix& m) {
+	return m * a;  // <--- Mnozenie macierzy przez liczbe 
+}
+
+Matrix operator-(int a, Matrix& m) {
+	return m - a;  // <--- Odejmowanie liczby od macierzy 
+}
