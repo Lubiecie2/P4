@@ -331,3 +331,7 @@ bool Matrix::operator<(const Matrix& m) {
 std::ostream& operator<<(std::ostream& o, Matrix& m) {
 
 }
+
+Matrix& Matrix::wczytaj_z_pliku(std::string nazwa) {
+
+}

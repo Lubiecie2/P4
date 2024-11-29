@@ -53,4 +53,6 @@ public:
     bool operator<(const Matrix& m);
 
     friend std::ostream& operator<<(std::ostream& o, Matrix& m);
+
+	Matrix& wczytaj_z_pliku(std::string nazwa);
 };
