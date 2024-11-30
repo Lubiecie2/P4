@@ -139,11 +139,29 @@ Matrix& Matrix::losuj(int x) {
 // Uklady macierzy
 
 Matrix& Matrix::diagonalna(int* t) {
-
+	if (rozmiar > 0) {
+		for (int i = 0; i < rozmiar; ++i) {
+			for (int j = 0; j < rozmiar; ++j) {
+				wsm[i][j] = (i == j) ? t[i] : 0;  // <--- Wstawianie wartosci na przekatnej
+			}
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
 Matrix& Matrix::diagonalna_k(int k, int* t) {
-	
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			wsm[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < rozmiar; ++i) {
+		int wiersz = i - k;
+		if (wiersz >= 0 && wiersz < rozmiar) {
+			wsm[wiersz][i] = t[i];  // <--- Wstawianie wartosci na przekatnej
+		}
+	}
+	return *this;  // <--- Zwracana jest referencja do obiektu
 }
 
 Matrix& Matrix::kolumna(int x, int* t) {
@@ -256,15 +274,33 @@ Matrix& Matrix::operator-(int a) {
 }
 
 Matrix operator+(int a, Matrix& m) {
-
+	Matrix wynik(m.rozmiar);
+	for (int i = 0; i < m.rozmiar; ++i) {
+		for (int j = 0; j < m.rozmiar; ++j) {
+			wynik.wsm[i][j] = a + m.wsm[i][j];  // <--- Dodawanie wartosci do macierzy 
+		}
+	}
+	return wynik;  // <--- Zwracana jest referencja do obiektu
 }
 
 Matrix operator*(int a, Matrix& m) {
-
+	Matrix wynik(m.rozmiar);
+	for (int i = 0; i < m.rozmiar; ++i) {
+		for (int j = 0; j < m.rozmiar; ++j) {
+			wynik.wsm[i][j] = a * m.wsm[i][j];  // <--- Mnozenie wartosci macierzy 
+		}
+	}
+	return wynik;  // <--- Zwracana jest referencja do obiektu
 }
 
 Matrix operator-(int a, Matrix& m) {
-
+	Matrix wynik(m.rozmiar);
+	for (int i = 0; i < m.rozmiar; ++i) {
+		for (int j = 0; j < m.rozmiar; ++j) {
+			wynik.wsm[i][j] = a - m.wsm[i][j];  // <--- Odejmowanie wartosci od macierzy 
+		}
+	}
+	return wynik;  // <--- Zwracana jest referencja do obiektu
 }
 
 Matrix& Matrix::operator++(int) {
@@ -311,7 +347,7 @@ Matrix& Matrix::operator*=(int a) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
-
+/*
 Matrix& Matrix::operator(double) {
 
 }
@@ -334,4 +370,4 @@ std::ostream& operator<<(std::ostream& o, Matrix& m) {
 
 Matrix& Matrix::wczytaj_z_pliku(std::string nazwa) {
 
-}
+}*/
