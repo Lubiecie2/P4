@@ -1,11 +1,12 @@
 #pragma once
+#include <string>
 
 class Matrix {
-private:
+public:
     int** wsm;    // <--- Wskaznik na macierz
     int rozmiar;  //<--- Rozmiar macierzy
 
-public:
+
 
     Matrix();                         // <--- konstruktor domyslny
     Matrix(int n);                    // <--- konstruktor z rozmiarem
@@ -54,5 +55,5 @@ public:
 
     //friend std::ostream& operator<<(std::ostream& o, Matrix& m);
 
-    //Matrix& wczytaj_z_pliku(std::string nazwa);*/
+    Matrix& wczytaj_z_pliku(const std::string& nazwa);
 };

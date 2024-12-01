@@ -2,7 +2,8 @@
 #include <iostream> // <--- Biblioteka zawierajaca funkcje cout i cin
 #include <ctime> // <--- Biblioteka zawierajaca funkcje time()
 #include <cstdlib> // <--- Biblioteka zawierajaca funkcje srand() i rand()
-
+#include <fstream> // <--- Biblioteka zawierajaca funkcje do obslugi plikow
+#include <string>
 
 // Konstruktory
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
@@ -348,6 +349,7 @@ Matrix& Matrix::operator*=(int a) {
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
 
+
 bool Matrix::operator>(const Matrix& m) {
 
 if (rozmiar != m.rozmiar) {
@@ -387,10 +389,28 @@ if (rozmiar != m.rozmiar) {
 
 //}
 
-//std::ostream& operator<<(std::ostream& o, Matrix& m) {
+Matrix& Matrix::wczytaj_z_pliku(const std::string& nazwa) {
+	std::ifstream plik(nazwa);  // Otwieranie pliku
+	if (!plik.is_open()) {
+		throw std::runtime_error("Nie mo¿na otworzyæ pliku");
+	}
 
-//}
+	int nowyRozmiar;
+	plik >> nowyRozmiar;  // Wczytanie rozmiaru macierzy
+	if (nowyRozmiar <= 0) {
+		throw std::invalid_argument("Nieprawid³owy rozmiar macierzy w pliku");
+	}
 
-//Matrix& Matrix::wczytaj_z_pliku(std::string nazwa) {
+	Macierz_Alokacja(nowyRozmiar);  // Zmieniamy rozmiar macierzy
 
-//}
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			if (!(plik >> wsm[i][j])) {  // Wczytujemy dane macierzy
+				throw std::runtime_error("B³¹d odczytu danych z pliku");
+			}
+		}
+	}
+
+	plik.close();  // Zamykamy plik
+	return *this;  // Zwracamy referencjê do bie¿¹cego obiektu
+}
