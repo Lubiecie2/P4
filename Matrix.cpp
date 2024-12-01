@@ -1,17 +1,17 @@
-#include "Matrix.h"
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
+#include "Matrix.h"  // <--- Plik naglowkowy klasy Matrix
+#include <iostream> // <--- Biblioteka zawierajaca funkcje cout i cin
+#include <ctime> // <--- Biblioteka zawierajaca funkcje time()
+#include <cstdlib> // <--- Biblioteka zawierajaca funkcje srand() i rand()
 
 
 
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
 
-Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec 
-    if (n > 0) {
-        rozmiar = n;
-        wsm = new int* [rozmiar];
-        for (int i = 0; i < rozmiar; ++i) {
+Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec.
+    if (n > 0) {  
+        rozmiar = n;   
+        wsm = new int* [rozmiar];  
+        for (int i = 0; i < rozmiar; ++i) {  
             wsm[i] = new int[rozmiar];
             for (int j = 0; j < rozmiar; ++j) {
                 wsm[i][j] = 0;
@@ -21,9 +21,9 @@ Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor aloku
 }
 
 Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor alokujacy pamiec i inicjalizujacy wartosci
-    if (n > 0) {
-        rozmiar = n;
-        wsm = new int* [rozmiar];
+    if (n > 0) {                     
+		rozmiar = n;  
+        wsm = new int* [rozmiar];  
         for (int i = 0; i < rozmiar; ++i) {
             wsm[i] = new int[rozmiar];
             for (int j = 0; j < rozmiar; ++j) {
