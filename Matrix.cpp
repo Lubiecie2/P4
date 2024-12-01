@@ -131,7 +131,7 @@ Matrix& Matrix::losuj(int x) {
 		for (int i = 0; i < x; ++i) {
 			int LosowyWiersz = std::rand() % rozmiar;
 			int LosowaKolumna = std::rand() % rozmiar;
-			wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <Losujemy liczby z zakresu 0-9>--
+			wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <--- Losujemy liczby z zakresu 0-9
 		}
 	}
 	return *this; // Zwracamy referencje do obiektu
