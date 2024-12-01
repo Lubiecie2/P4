@@ -49,11 +49,11 @@ public:
     Matrix& operator*=(int a);
     //Matrix& operator(double);
     
-    //bool operator==(const Matrix& m);
+    bool operator==(const Matrix& m);
     bool operator>(const Matrix& m);
     bool operator<(const Matrix& m);
 
-    //friend std::ostream& operator<<(std::ostream& o, Matrix& m);
+    friend std::ostream& operator<<(std::ostream& o, Matrix& m);
 
     Matrix& wczytaj_z_pliku(const std::string& nazwa);
 };

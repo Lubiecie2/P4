@@ -385,9 +385,23 @@ if (rozmiar != m.rozmiar) {
 
 //}
 
-//bool Matrix::operator==(const Matrix& m) {
+bool Matrix::operator==(const Matrix& m) {
+	// Sprawdzamy, czy rozmiary macierzy s¹ takie same
+	if (this->rozmiar != m.rozmiar) {
+		return false;  // Rozmiary ró¿ne, macierze nie s¹ równe
+	}
 
-//}
+	// Porównujemy wartoœci w ka¿dej komórce
+	for (int i = 0; i < this->rozmiar; ++i) {
+		for (int j = 0; j < this->rozmiar; ++j) {
+			if (this->wsm[i][j] != m.wsm[i][j]) {
+				return false;  // Wartoœci s¹ ró¿ne, macierze nie s¹ równe
+			}
+		}
+	}
+
+	return true;  // Jeœli rozmiary i wszystkie wartoœci s¹ takie same, macierze s¹ równe
+}
 
 Matrix& Matrix::wczytaj_z_pliku(const std::string& nazwa) {
 	std::ifstream plik(nazwa);  // Otwieranie pliku
@@ -413,4 +427,17 @@ Matrix& Matrix::wczytaj_z_pliku(const std::string& nazwa) {
 
 	plik.close();  // Zamykamy plik
 	return *this;  // Zwracamy referencjê do bie¿¹cego obiektu
+}
+
+std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+
+	// Wyœwietlamy elementy macierzy
+	for (int i = 0; i < matrix.rozmiar; ++i) {
+		for (int j = 0; j < matrix.rozmiar; ++j) {
+			os << matrix.wsm[i][j] << " ";  // Wyœwietlamy elementy z odstêpem
+		}
+		os << std::endl;  // Przejœcie do nowego wiersza
+	}
+
+	return os;  // Zwracamy strumieñ
 }

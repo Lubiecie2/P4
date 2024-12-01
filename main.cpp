@@ -300,14 +300,19 @@ int main()
         std::cout << "macierz1 < macierz2: FALSZ" << std::endl;
     }
     
+    if (mc1 == mc2) {
+        std::cout << "macierz1 == macierz2: PRAWDA" << std::endl;
+    }
+    else {
+        std::cout << "macierz1 == macierz2: FALSZ" << std::endl;
+    }
 
     Matrix mac(1);
 
-    // Wywołanie metody wczytaj_z_pliku
     mac.wczytaj_z_pliku("macierz.txt");
 
 	std::cout << std::endl;
-    // Wyświetlenie zawartości macierzy po wczytaniu
+
     cout << "Macierz po wczytaniu z pliku:" << endl;
     for (int i = 0; i < 11; ++i) {
         for (int j = 0; j < 11; ++j) {
