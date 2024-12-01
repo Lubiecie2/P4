@@ -347,27 +347,50 @@ Matrix& Matrix::operator*=(int a) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
-/*
-Matrix& Matrix::operator(double) {
-
-}
-
-bool Matrix::operator==(const Matrix& m) {
-
-}
 
 bool Matrix::operator>(const Matrix& m) {
+
+if (rozmiar != m.rozmiar) {
+		throw std::invalid_argument("Wymiary macierzy musz¹ byæ takie same");
+	}
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			if (wsm[i][j] <= m.wsm[i][j]) { // Jeœli którykolwiek element nie spe³nia nierównoœci
+				return false; // Nie mo¿emy powiedzieæ, ¿e macierz jest wiêksza
+			}
+		}
+	}
+	return true; // Wszystkie elementy s¹ wiêksze
 
 }
 
 bool Matrix::operator<(const Matrix& m) {
+if (rozmiar != m.rozmiar) {
+		throw std::invalid_argument("Wymiary macierzy musz¹ byæ takie same");
+	}
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			if (wsm[i][j] >= m.wsm[i][j]) { // Jeœli którykolwiek element nie spe³nia nierównoœci
+				return false; // Nie mo¿emy powiedzieæ, ¿e macierz jest mniejsza
+			}
+		}
+	}
+	return true; // Wszystkie elementy s¹ mniejsze
 
 }
 
-std::ostream& operator<<(std::ostream& o, Matrix& m) {
+//Matrix& Matrix::operator(double) {
 
-}
+//}
 
-Matrix& Matrix::wczytaj_z_pliku(std::string nazwa) {
+//bool Matrix::operator==(const Matrix& m) {
 
-}*/
+//}
+
+//std::ostream& operator<<(std::ostream& o, Matrix& m) {
+
+//}
+
+//Matrix& Matrix::wczytaj_z_pliku(std::string nazwa) {
+
+//}
