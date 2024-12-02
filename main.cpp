@@ -419,7 +419,10 @@ int main()
     std::cout << std::endl;
 
 	// ----------------- Koniec Macierz diagonalna_k -----------------
+	// ----------------- Friend functions -----------------
 
+	std::cout << "**************** Friend functions *******************" << std::endl;
+    std::cout << std::endl;
     Matrix m_plus = macierz + 5;
     cout << "Macierz po dodaniu 5 wyglada nastepujaco: " << endl;
     for (int i = 0; i < 5; i++) {  
@@ -429,7 +432,7 @@ int main()
         cout << endl;
     }
     std::cout << std::endl;
-                                                                        // <!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                                                        
     Matrix m_minus = macierz - 5;
     cout << "Macierz po odjeciu wyglada nastepujaco: " << endl;
     for (int i = 0; i < 5; i++) {  
@@ -451,12 +454,14 @@ int main()
 
 
     std::cout << std::endl;
-
+	std::cout << "***********************************" << std::endl;
+	std::cout << std::endl;
+	// ----------------- Koniec Friend functions -----------------
 	// ----------------- Porownanie macierzy -----------------
     std::cout << "***********************************" << std::endl;
 	std::cout << "Poronanie macierzy:\n";
 	std::cout << "Macierz1:\n";
-    // Tworzenie macierzy macierz1 3x3 i wypełnianie wartościami
+ 
     Matrix mc1(3);
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -468,7 +473,7 @@ int main()
 
     std::cout << "\n";
 	std::cout << "Macierz2:\n";
-    // Tworzenie macierzy macierz2 3x3 i wypełnianie wartościami
+   
     Matrix mc2(3);
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -480,7 +485,6 @@ int main()
 
     std::cout << "\nTest porownania macierzy:\n";
 
-    // Operator '>'
     if (mc1 > mc2) {
         std::cout << "macierz1 > macierz2: PRAWDA" << std::endl;
     }
@@ -488,7 +492,6 @@ int main()
         std::cout << "macierz1 > macierz2: FALSZ" << std::endl;
     }
 
-    // Operator '<'
     if (mc1 < mc2) {
         std::cout << "macierz1 < macierz2: PRAWDA" << std::endl;
     }
@@ -518,6 +521,20 @@ int main()
         }
         cout << endl;
     }
-    return 0;
     
+	std::cout << std::endl;
+    
+    Matrix BigMacierz(33);
+    
+	std::cout << "Macierz skladajaca sie z ponad 30 elementow: " << std::endl;
+    for (int i = 0; i < 33; i++) {
+        for (int j = 0; j < 33; j++) {
+            int value = ((i * 33 + j) % 9) + 1;  // Generowanie liczby w zakresie 1-9
+            BigMacierz.wstaw(i, j, value);  // Wstawiamy wartość do macierzy
+            std::cout << BigMacierz.pokaz(i, j) << " ";  // Wyświetlamy wartość
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
 }
