@@ -217,7 +217,7 @@ public:
     /// 
     /// @param a Liczba zmiennoprzecinkowa.
     /// @return Referencja do obiektu macierzy po powiêkszeniu.
-    Matrix& operator(double a);
+    //Matrix& operator(double a);
 
     /// Operator wypisania macierzy na ekran.
     /// 
@@ -243,4 +243,6 @@ public:
     /// @param m Macierz do porównania.
     /// @return `true` jeœli wszystkie elementy macierzy s¹ mniejsze, w przeciwnym razie `false`.
     bool operator<(const Matrix& m);
+
+    Matrix& wczytaj_z_pliku(const std::string& nazwa);
 };

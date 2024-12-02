@@ -5,259 +5,455 @@ using namespace std;
 
 int main()
 {
+	// ----------------- Macierz standardowa -----------------
+
+	cout << "Standardowa macierz: " << endl;
     cout << "Macierz wyglada nastepujaco: " << endl;
-    Matrix macierz(5);  // Zmieniamy rozmiar macierzy na 5x5
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    
+    Matrix macierz(5);  
+   
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             macierz.wstaw(i, j, i + j);
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
 
+	// ----------------- Koniec Macierz standardowa -----------------
+	// ----------------- Macierz wstawianie 5 na pozycje 1,1 -----------------
+
+	std::cout << std::endl;
     cout << "Wstawianie wartosci 5 na pozycje 1,1" << endl;
     macierz.wstaw(1, 1, 5);
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) { 
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz wstawianie 5 na pozycje 1,1 -----------------
+	// ----------------- Macierz odwracanie -----------------
 
 	cout << "Odwrocenie macierzy: " << endl;
 	macierz.Macierz_Odwroc();
 	cout << "Macierz wyglada nastepujaco: " << endl;
-	for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-		for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+	for (int i = 0; i < 5; i++) {  
+		for (int j = 0; j < 5; j++) { 
 			cout << macierz.pokaz(i, j) << " ";
 		}
 		cout << endl;
 	}
 
+	// ----------------- Koniec Macierz odwracanie -----------------
+	// ----------------- Macierz zamiana pierwszej kolumny -----------------
+
+    std::cout << std::endl;
     cout << "Zmiana pierwszej kolumny: " << endl;
-    int kolumna[] = { 7, 6, 7, 7, 6 };  // Dostosowanie do 5 elementów
+    int kolumna[] = { 7, 6, 7, 7, 6 };  
     macierz.kolumna(0, kolumna);
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) { 
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz zamiana pierwszej kolumny -----------------
+	// ----------------- Macierz zamiana drugiego wiersza -----------------
 
     cout << "Zmiana drugiego wiersza: " << endl;
-    int wiersz[] = { 9, 0, 9, 9, 0 };  // Dostosowanie do 5 elementów
+    int wiersz[] = { 9, 0, 9, 9, 0 };  
     macierz.wiersz(1, wiersz);
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) { 
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz zamiana drugiego wiersza -----------------
+	// ----------------- Macierz przekatna -----------------
 
     cout << "Przekatna: " << endl;
     macierz.przekatna();
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+	std::cout << std::endl;
+
+	// ----------------- Koniec Macierz przekatna -----------------
+	// ----------------- Macierz pod przekatna -----------------
 
     cout << "Pod przekatna: " << endl;
     macierz.pod_przekatna();
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) { 
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz pod przekatna -----------------
+	// ----------------- Macierz nad przekatna -----------------
 
     cout << "Nad przekatna: " << endl;
     macierz.nad_przekatna();
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz nad przekatna -----------------
+	// ----------------- Macierz losowa -----------------
 
     cout << "Losowe liczby: " << endl;
-    macierz.losuj(3);
+    macierz.losuj(8);
 
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
 
-    cout << "Powiekszenie macierzy o 1: " << endl;
-    macierz.operator+=(1);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
+	// ----------------- Koniec Macierz losowa -----------------
+	// ----------------- Macierz powiekszona o 1 -----------------
+
+    std::cout << "***********************************" << std::endl;
+    cout << "Powiekszenie macierzy o okreslona liczbe (2): " << endl;
+
+    cout << "Przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j); 
+            cout << macierz.pokaz(i, j) << " "; 
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz.operator+=(2);
+
+    cout << "Po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";  
         }
         cout << endl;
     }
 
-    cout << "Pomniejszenie macierzy o 1: " << endl;
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz powiekszona o 1 -----------------
+	// ----------------- Macierz pomniejszona o 1 -----------------
+
+    std::cout << "***********************************" << std::endl;
+    cout << "Pomniejszenie macierzy o okreslona liczbe (2): " << endl;
+
+    cout << "Przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j);  
+            cout << macierz.pokaz(i, j) << " "; 
+        }
+        cout << endl;
+    }
+    cout << endl;
+
     macierz.operator-=(1);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
+
+    cout << "Po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";  
         }
         cout << endl;
     }
 
-    cout << "Pomnozenie macierzy przez 2: " << endl;
-    macierz.operator*=(2);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz pomniejszona o 1 -----------------
+	// ----------------- Macierz pomnozona przez 2 -----------------
+
+	std::cout << "***********************************" << std::endl;
+    cout << "Pomnozenie macierzy przez 2 " << endl;
+    cout << "Przed operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j);
             cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz.operator*=(2);  
+
+    cout << "Po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+    
+    // ----------------- Koniec Macierz pomnozona przez 2 -----------------
+	// ----------------- Macierz inkrementacja -----------------
+
+    std::cout << "***********************************" << std::endl;
+    cout << "Macierz inkrementacja: " << endl;
+
+    cout << "Przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j); 
+            cout << macierz.pokaz(i, j) << " ";  
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz.operator++(1);  
+
+    cout << "Po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " "; 
         }
         cout << endl;
     }
 
-    cout << "Powiekszenie macierzy o 1: " << endl;
-    macierz.operator++(1);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz inkrementacja -----------------
+	// ----------------- Macierz dekrementacja -----------------
+
+    std::cout << "***********************************" << std::endl;
+    cout << "Macierz dekrementacja: " << endl;
+
+    cout << "Przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j); 
+            cout << macierz.pokaz(i, j) << " "; 
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz.operator--(1);  
+
+    cout << "Po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";  
         }
         cout << endl;
     }
 
-    cout << "Pomniejszenie macierzy o 1: " << endl;
-    macierz.operator--(1);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
-        }
-        cout << endl;
-    }
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz dekrementacja -----------------
+	// ----------------- Macierz szachownica -----------------
 
     cout << "Szachownica: " << endl;
     macierz.szachownica();
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) { 
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+    
+	// ----------------- Koniec Macierz szachownica -----------------
+	// ----------------- Macierz dodawanie -----------------
 
+    Matrix macierz2(5); 
+
+    std::cout << "***********************************" << std::endl;
     cout << "Dodawanie macierzy: " << endl;
-    Matrix macierz2(5);  // Zmieniamy rozmiar macierzy na 5x5
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            macierz2.wstaw(i, j, i + j);
-            cout << macierz2.pokaz(i, j) << " ";
+
+    cout << "Macierz 1 przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j);  
+            cout << macierz.pokaz(i, j) << " ";  
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "Macierz 2 przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz2.wstaw(i, j, (i + j) * 2); 
+            cout << macierz2.pokaz(i, j) << " ";  
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz = macierz + macierz2;  
+
+    cout << "Po operacji dodawania: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";  
         }
         cout << endl;
     }
 
-    macierz.operator+(macierz2);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
-        }
-        cout << endl;
-    }
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
 
-    cout << "Dodawanie liczby do macierzy: " << endl;
-    macierz.operator+(5);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
-        }
-        cout << endl;
-    }
+	// ----------------- Koniec Macierz dodawanie -----------------
+	// ----------------- Macierz mnozenie -----------------
 
-    cout << "Mnozenie macierzy przez liczbe: " << endl;
-    macierz.operator*(5);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
-            cout << macierz.pokaz(i, j) << " ";
-        }
-        cout << endl;
-    }
+    std::cout << "***********************************" << std::endl;
+    cout << "Mnozenie macierzy przez liczbe (5): " << endl;
 
-    cout << "Odejmowanie liczby od macierzy: " << endl;
-    macierz.operator-(5);
-    cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    cout << "Macierz przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j); 
+            cout << macierz.pokaz(i, j) << " ";  
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz.operator*(5);  
+
+    cout << "Macierz po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";  
+        }
+        cout << endl;
+    }
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz mnozenie -----------------
+    // ---------------- Odejmowanie liczby od macierzy ----------------
+
+    std::cout << "***********************************" << std::endl;
+	cout << "Odejmowanie liczby od macierzy (5): " << endl;
+    cout << "Macierz przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    cout << endl;
+
+    macierz.operator-=(5); 
+
+    cout << "Macierz po operacji: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+    // ----------------Koniec Odejmowanie liczby od macierzy ----------------
+	// ---------------- Macierz diagonalna ----------------
 
     cout << "Diagonalna: " << endl;
-    int diagonalna[] = { 1, 2, 3, 4, 5 };  // Zmieniamy zakres na 5 elementów
+    int diagonalna[] = { 1, 2, 3, 4, 5 };  
     macierz.diagonalna(diagonalna);
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) { 
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz diagonalna -----------------
+	// ----------------- Macierz diagonalna_k -----------------
 
     cout << "Diagonalna k: " << endl;
-    int diagonalna_k[] = { 1, 2, 3, 4, 5 };  // Zmieniamy zakres na 5 elementów
+    int diagonalna_k[] = { 1, 2, 3, 4, 5 };  
     macierz.diagonalna_k(1, diagonalna_k);
     cout << "Macierz wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             cout << macierz.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz diagonalna_k -----------------
 
     Matrix m_plus = macierz + 5;
     cout << "Macierz po dodaniu 5 wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             cout << m_plus.pokaz(i, j) << " ";
         }
         cout << endl;
     }
-
+    std::cout << std::endl;
+                                                                        // <!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     Matrix m_minus = macierz - 5;
     cout << "Macierz po odjeciu wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) {  
             cout << m_minus.pokaz(i, j) << " ";
         }
         cout << endl;
     }
+    std::cout << std::endl;
 
     Matrix m_razy = 5 * macierz;
     cout << "Macierz po pomnozeniu razy 5 wyglada nastepujaco: " << endl;
-    for (int i = 0; i < 5; i++) {  // Zmieniamy zakres pętli na 5
-        for (int j = 0; j < 5; j++) {  // Zmieniamy zakres pętli na 5
+    for (int i = 0; i < 5; i++) {  
+        for (int j = 0; j < 5; j++) { 
             cout << m_razy.pokaz(i, j) << " ";
         }
         cout << endl;
     }
 
+
     std::cout << std::endl;
 
+	// ----------------- Porownanie macierzy -----------------
+    std::cout << "***********************************" << std::endl;
 	std::cout << "Poronanie macierzy:\n";
 	std::cout << "Macierz1:\n";
     // Tworzenie macierzy macierz1 3x3 i wypełnianie wartościami
@@ -306,6 +502,8 @@ int main()
     else {
         std::cout << "macierz1 == macierz2: FALSZ" << std::endl;
     }
+    std::cout << "***********************************" << std::endl;
+	// ----------------- Koniec Porownanie macierzy -----------------
 
     Matrix mac(1);
 
