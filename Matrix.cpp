@@ -3,19 +3,19 @@
 #include <ctime> // <--- Biblioteka zawierajaca funkcje time()
 #include <cstdlib> // <--- Biblioteka zawierajaca funkcje srand() i rand()
 #include <fstream> // <--- Biblioteka zawierajaca funkcje do obslugi plikow
-#include <string>
+#include <string> // <--- Biblioteka zawierajaca funkcje do obslugi napisow
 
 // Konstruktory
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
 
 Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec.
     if (n > 0) {  
-        rozmiar = n;   
-        wsm = new int* [rozmiar];  
-        for (int i = 0; i < rozmiar; ++i) {  
-            wsm[i] = new int[rozmiar];
-            for (int j = 0; j < rozmiar; ++j) {
-                wsm[i][j] = 0;
+		rozmiar = n; // <--- Przypisanie rozmiaru macierzy
+		wsm = new int* [rozmiar];  // <--- Alokacja pamieci dla wierszy
+		for (int i = 0; i < rozmiar; ++i) {  // <--- Petla alokujaca pamiec dla kolumn
+			wsm[i] = new int[rozmiar]; // <--- Alokacja pamieci dla kolumn
+			for (int j = 0; j < rozmiar; ++j) { // <--- Petla zerujaca wartosci macierzy
+				wsm[i][j] = 0; // <--- Zerowanie wartosci macierzy
             }
         }
     }
@@ -23,25 +23,25 @@ Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor aloku
 
 Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor alokujacy pamiec i inicjalizujacy wartosci
     if (n > 0) {                     
-		rozmiar = n;  
-        wsm = new int* [rozmiar];  
-        for (int i = 0; i < rozmiar; ++i) {
-            wsm[i] = new int[rozmiar];
-            for (int j = 0; j < rozmiar; ++j) {
-                wsm[i][j] = t[i * rozmiar + j]; 
+		rozmiar = n;  // <--- Przypisanie rozmiaru macierzy
+		wsm = new int* [rozmiar];  // <--- Alokacja pamieci dla wierszy
+		for (int i = 0; i < rozmiar; ++i) { // <--- Petla alokujaca pamiec dla kolumn
+			wsm[i] = new int[rozmiar];  // <--- Alokacja pamieci dla kolumn
+			for (int j = 0; j < rozmiar; ++j) {  // <--- Petla wstawiajaca wartosci do macierzy
+				wsm[i][j] = t[i * rozmiar + j];  // <--- Wstawianie wartosci do macierzy
             }
         }
     }
 }
 
 Matrix::Matrix(const Matrix& m) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor kopiujacy 
-    if (m.rozmiar > 0) {
-        rozmiar = m.rozmiar;
-        wsm = new int* [rozmiar];
-        for (int i = 0; i < rozmiar; ++i) {
-            wsm[i] = new int[rozmiar];
-            for (int j = 0; j < rozmiar; ++j) {
-                wsm[i][j] = m.wsm[i][j]; 
+	if (m.rozmiar > 0) {  // <--- Sprawdzenie czy macierz ma rozmiar wiekszy od 0
+		rozmiar = m.rozmiar;  // <--- Przypisanie rozmiaru macierzy 
+		wsm = new int* [rozmiar];  // <--- Alokacja pamieci dla wierszy 
+		for (int i = 0; i < rozmiar; ++i) {  // <--- Petla alokujaca pamiec dla kolumn 
+			wsm[i] = new int[rozmiar];  // <--- Alokacja pamieci dla kolumn 
+			for (int j = 0; j < rozmiar; ++j) {  // <--- Petla wstawiajaca wartosci do macierzy 
+				wsm[i][j] = m.wsm[i][j]; // <--- Wstawianie wartosci do macierzy
             }
         }
     }
@@ -50,13 +50,13 @@ Matrix::Matrix(const Matrix& m) : wsm(nullptr), rozmiar(0) {  // <--- Konstrukto
 // Destruktor
 
 Matrix::~Matrix() {
-    if (wsm) {
-        for (int i = 0; i < rozmiar; ++i) {
-            delete[] wsm[i]; 
+	if (wsm) {  // <--- Sprawdzenie czy macierz ma zaalokowana pamiec
+		for (int i = 0; i < rozmiar; ++i) {  // <--- Petla zwalniajaca pamiec
+			delete[] wsm[i]; // <--- Zwalnianie pamieci
         }
-        delete[] wsm; 
-        wsm = nullptr;
-        rozmiar = 0; 
+		delete[] wsm; // <--- Zwalnianie pamieci
+		wsm = nullptr;  // <--- Ustawianie wskaznika na nullptr
+		rozmiar = 0; // <--- Zerowanie rozmiaru
     }
 }   
 
@@ -89,11 +89,11 @@ Matrix& Matrix::Macierz_Alokacja(int n) {
 
 // Operacje na elementach macierzy
 
-Matrix& Matrix::wstaw(int x, int y, int wartosc) {
-	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {
-		wsm[x][y] = wartosc;  // <--- Wstawianie wartosci do macierzy 
+Matrix& Matrix::wstaw(int x, int y, int wartosc) { 
+	if (x >= 0 && x < rozmiar && y >= 0 && y < rozmiar) {  // <--- Sprawdzanie czy wspolrzedne sa w zakresie
+		wsm[x][y] = wartosc;  // <--- Wstawianie wartosci do macierzy
 	}
-	return *this;  // <--- Zwracana jest referencja do obiektu 
+	return *this;  // <--- Zwracana jest referencja do obiektu
 }
 
 int Matrix::pokaz(int x, int y) {
@@ -115,26 +115,34 @@ Matrix& Matrix::Macierz_Odwroc() {
 }
 
 
-Matrix& Matrix::Macierz_Losowa_wartosc_0_9() {
+Matrix& Matrix::losuj() {
     
     for (int i = 0; i < rozmiar; ++i) {
         for (int j = 0; j < rozmiar; ++j) {
-            wsm[i][j] = std::rand() % 10;  // Losujemy liczby z zakresu 0-9
+            wsm[i][j] = std::rand() % 10;  // <--- Losujemy liczby z zakresu 0-9
         }
     }
     return *this;  // Zwracamy referencje do obiektu
 }
 
 Matrix& Matrix::losuj(int x) {
-	if (rozmiar > 0 && x > 0) {
-		std::srand(std::time(nullptr)); // <--- Inicjalizacja generatora liczb pseudolosowych
-		for (int i = 0; i < x; ++i) {
+	if (rozmiar > 0 && x > 0 && x <= rozmiar * rozmiar) {
+		std::srand(std::time(nullptr));
+
+		int liczbaWype³nionych = 0;
+		while (liczbaWype³nionych < x) {
+
 			int LosowyWiersz = std::rand() % rozmiar;
 			int LosowaKolumna = std::rand() % rozmiar;
-			wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <--- Losujemy liczby z zakresu 0-9
+
+
+			if (wsm[LosowyWiersz][LosowaKolumna] == 0) {
+				wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10;
+				liczbaWype³nionych++;
+			}
 		}
 	}
-	return *this; // Zwracamy referencje do obiektu
+	return *this;
 }
 
 // Uklady macierzy
@@ -233,6 +241,12 @@ Matrix& Matrix::operator+(Matrix& m) {
 }
 
 Matrix& Matrix::operator*(Matrix& m) {
+	if (rozmiar != m.rozmiar) {
+		throw std::invalid_argument("Nie mo¿na pomno¿yæ macierzy o ró¿nych rozmiarach");
+	}
+
+	Matrix wynik(rozmiar);
+
 	if (rozmiar == m.rozmiar) {
 		Matrix temp(rozmiar);
 		for (int i = 0; i < rozmiar; ++i) {
@@ -257,6 +271,8 @@ Matrix& Matrix::operator+(int a) {
 }
 
 Matrix& Matrix::operator*(int a) {
+	
+	
 	for (int i = 0; i < rozmiar; ++i) {
 		for (int j = 0; j < rozmiar; ++j) {
 			wsm[i][j] *= a;  // <--- Mnozenie wartosci macierzy 

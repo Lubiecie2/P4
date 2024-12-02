@@ -125,7 +125,7 @@ int main()
 	// ----------------- Macierz losowa -----------------
 
     cout << "Losowe liczby: " << endl;
-    macierz.losuj(8);
+    macierz.losuj(5);
 
     cout << "Macierz wyglada nastepujaco: " << endl;
     for (int i = 0; i < 5; i++) {  
@@ -137,6 +137,22 @@ int main()
     std::cout << std::endl;
 
 	// ----------------- Koniec Macierz losowa -----------------
+    // ----------------- Macierz losowa -----------------
+
+    cout << "Losowe liczby wszystkie: " << endl;
+    macierz.losuj();
+
+    cout << "Macierz wyglada nastepujaco: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    std::cout << std::endl;
+
+    // ----------------- Koniec Macierz losowa ----------------- 
+    
 	// ----------------- Macierz powiekszona o 1 -----------------
 
     std::cout << "***********************************" << std::endl;
@@ -529,9 +545,9 @@ int main()
 	std::cout << "Macierz skladajaca sie z ponad 30 elementow: " << std::endl;
     for (int i = 0; i < 33; i++) {
         for (int j = 0; j < 33; j++) {
-            int value = ((i * 33 + j) % 9) + 1;  // Generowanie liczby w zakresie 1-9
-            BigMacierz.wstaw(i, j, value);  // Wstawiamy wartość do macierzy
-            std::cout << BigMacierz.pokaz(i, j) << " ";  // Wyświetlamy wartość
+            int value = ((i * 33 + j) % 9) + 1;  
+            BigMacierz.wstaw(i, j, value);  
+            std::cout << BigMacierz.pokaz(i, j) << " "; 
         }
         std::cout << std::endl;
     }

@@ -76,7 +76,7 @@ public:
     /// Wype³nia macierz losowymi wartoœciami w zakresie od 0 do 9.
     /// 
     /// @return Referencja do obiektu macierzy po wype³nieniu.
-    Matrix& Macierz_Losowa_wartosc_0_9();
+    Matrix& losuj();
 
     /// Losuje `x` wartoœci w macierzy i umieszcza je w losowych miejscach.
     /// 
