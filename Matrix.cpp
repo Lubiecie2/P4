@@ -1,17 +1,18 @@
-#include "Matrix.h"
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
+#include "Matrix.h"  // <--- Plik naglowkowy klasy Matrix
+#include <iostream> // <--- Biblioteka zawierajaca funkcje cout i cin
+#include <ctime> // <--- Biblioteka zawierajaca funkcje time()
+#include <cstdlib> // <--- Biblioteka zawierajaca funkcje srand() i rand()
+#include <fstream> // <--- Biblioteka zawierajaca funkcje do obslugi plikow
+#include <string>
 
 // Konstruktory
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
 
-Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec 
-    if (n > 0) {
-        rozmiar = n;
-        wsm = new int* [rozmiar];
-        for (int i = 0; i < rozmiar; ++i) {
+Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec.
+    if (n > 0) {  
+        rozmiar = n;   
+        wsm = new int* [rozmiar];  
+        for (int i = 0; i < rozmiar; ++i) {  
             wsm[i] = new int[rozmiar];
             for (int j = 0; j < rozmiar; ++j) {
                 wsm[i][j] = 0;
@@ -21,9 +22,9 @@ Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor aloku
 }
 
 Matrix::Matrix(int n, int* t) : wsm(nullptr), rozmiar(0) {  // <--- Konstruktor alokujacy pamiec i inicjalizujacy wartosci
-    if (n > 0) {
-        rozmiar = n;
-        wsm = new int* [rozmiar];
+    if (n > 0) {                     
+		rozmiar = n;  
+        wsm = new int* [rozmiar];  
         for (int i = 0; i < rozmiar; ++i) {
             wsm[i] = new int[rozmiar];
             for (int j = 0; j < rozmiar; ++j) {
@@ -130,7 +131,7 @@ Matrix& Matrix::losuj(int x) {
 		for (int i = 0; i < x; ++i) {
 			int LosowyWiersz = std::rand() % rozmiar;
 			int LosowaKolumna = std::rand() % rozmiar;
-			wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <Losujemy liczby z zakresu 0-9>--
+			wsm[LosowyWiersz][LosowaKolumna] = std::rand() % 10; // <--- Losujemy liczby z zakresu 0-9
 		}
 	}
 	return *this; // Zwracamy referencje do obiektu
@@ -347,27 +348,96 @@ Matrix& Matrix::operator*=(int a) {
 	}
 	return *this;  // <--- Zwracana jest referencja do obiektu 
 }
-/*
-Matrix& Matrix::operator(double) {
 
-}
-
-bool Matrix::operator==(const Matrix& m) {
-
-}
 
 bool Matrix::operator>(const Matrix& m) {
+
+if (rozmiar != m.rozmiar) {
+		throw std::invalid_argument("Wymiary macierzy musz¹ byæ takie same");
+	}
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			if (wsm[i][j] <= m.wsm[i][j]) { // Jeœli którykolwiek element nie spe³nia nierównoœci
+				return false; // Nie mo¿emy powiedzieæ, ¿e macierz jest wiêksza
+			}
+		}
+	}
+	return true; // Wszystkie elementy s¹ wiêksze
 
 }
 
 bool Matrix::operator<(const Matrix& m) {
+if (rozmiar != m.rozmiar) {
+		throw std::invalid_argument("Wymiary macierzy musz¹ byæ takie same");
+	}
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			if (wsm[i][j] >= m.wsm[i][j]) { // Jeœli którykolwiek element nie spe³nia nierównoœci
+				return false; // Nie mo¿emy powiedzieæ, ¿e macierz jest mniejsza
+			}
+		}
+	}
+	return true; // Wszystkie elementy s¹ mniejsze
 
 }
 
-std::ostream& operator<<(std::ostream& o, Matrix& m) {
+//Matrix& Matrix::operator(double) {
 
+//}
+
+bool Matrix::operator==(const Matrix& m) {
+	// Sprawdzamy, czy rozmiary macierzy s¹ takie same
+	if (this->rozmiar != m.rozmiar) {
+		return false;  // Rozmiary ró¿ne, macierze nie s¹ równe
+	}
+
+	// Porównujemy wartoœci w ka¿dej komórce
+	for (int i = 0; i < this->rozmiar; ++i) {
+		for (int j = 0; j < this->rozmiar; ++j) {
+			if (this->wsm[i][j] != m.wsm[i][j]) {
+				return false;  // Wartoœci s¹ ró¿ne, macierze nie s¹ równe
+			}
+		}
+	}
+
+	return true;  // Jeœli rozmiary i wszystkie wartoœci s¹ takie same, macierze s¹ równe
 }
 
-Matrix& Matrix::wczytaj_z_pliku(std::string nazwa) {
+Matrix& Matrix::wczytaj_z_pliku(const std::string& nazwa) {
+	std::ifstream plik(nazwa);  // Otwieranie pliku
+	if (!plik.is_open()) {
+		throw std::runtime_error("Nie mo¿na otworzyæ pliku");
+	}
 
-}*/
+	int nowyRozmiar;
+	plik >> nowyRozmiar;  // Wczytanie rozmiaru macierzy
+	if (nowyRozmiar <= 0) {
+		throw std::invalid_argument("Nieprawid³owy rozmiar macierzy w pliku");
+	}
+
+	Macierz_Alokacja(nowyRozmiar);  // Zmieniamy rozmiar macierzy
+
+	for (int i = 0; i < rozmiar; ++i) {
+		for (int j = 0; j < rozmiar; ++j) {
+			if (!(plik >> wsm[i][j])) {  // Wczytujemy dane macierzy
+				throw std::runtime_error("B³¹d odczytu danych z pliku");
+			}
+		}
+	}
+
+	plik.close();  // Zamykamy plik
+	return *this;  // Zwracamy referencjê do bie¿¹cego obiektu
+}
+
+std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+
+	// Wyœwietlamy elementy macierzy
+	for (int i = 0; i < matrix.rozmiar; ++i) {
+		for (int j = 0; j < matrix.rozmiar; ++j) {
+			os << matrix.wsm[i][j] << " ";  // Wyœwietlamy elementy z odstêpem
+		}
+		os << std::endl;  // Przejœcie do nowego wiersza
+	}
+
+	return os;  // Zwracamy strumieñ
+}
