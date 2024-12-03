@@ -197,7 +197,7 @@ int main()
     }
     cout << endl;
 
-    macierz.operator-=(1);
+    macierz.operator-=(2);
 
     cout << "Po operacji: " << endl;
     for (int i = 0; i < 5; i++) {
