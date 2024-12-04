@@ -241,17 +241,13 @@ Matrix& Matrix::operator+(Matrix& m) {
 Matrix& Matrix::operator*(Matrix& m) {
 
 	if (rozmiar == m.rozmiar) { // <--- Sprawdzanie czy rozmiary macierzy sa takie same
-		Matrix temp(rozmiar); // <--- Tworzenie tymczasowej macierzy 
-		for (int i = 0; i < rozmiar; ++i) {  
+		for (int i = 0; i < rozmiar; ++i) {
 			for (int j = 0; j < rozmiar; ++j) {
-				for (int k = 0; k < rozmiar; ++k) {
-					temp.wsm[i][j] += wsm[i][k] * m.wsm[k][j];  // <--- Mnozenie macierzy 
-				}
+				wsm[i][j] *= m.wsm[i][j];  // <--- Dodawanie macierzy 
 			}
 		}
-		*this = temp;  // <--- Przypisanie wartosci do macierzy
 	}
-	return *this; 
+	return *this;
 }
 
 Matrix& Matrix::operator+(int a) { 
@@ -264,8 +260,6 @@ Matrix& Matrix::operator+(int a) {
 }
 
 Matrix& Matrix::operator*(int a) {
-	
-	
 	for (int i = 0; i < rozmiar; ++i) {
 		for (int j = 0; j < rozmiar; ++j) {
 			wsm[i][j] *= a;  // <--- Mnozenie wartosci macierzy 
@@ -448,4 +442,14 @@ std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
 	}
 
 	return os;  // Zwracamy strumieñ
+}
+
+Matrix& Matrix::operator+=(double a) {  // <--- Dodawanie liczby zmiennoprzecinkowej do macierzy
+	for (int i = 0; i < rozmiar; ++i) {  // <--- Petla dodajaca wartosci do macierzy
+		for (int j = 0; j < rozmiar; ++j) {  // <--- Petla dodajaca wartosci do macierzy
+			wsm[i][j] += a;  // <--- Dodawanie wartosci do macierzy
+		}
+	}
+
+	return *this;
 }

@@ -21,14 +21,14 @@ public:
     /// Nie alokuje pamieci dla macierzy.
     Matrix();
 
-    /// Konstruktor przeciazeniowy.
+    /// Konstruktor przeciazony.
     /// 
     /// Alokuje pamiec dla macierzy o rozmiarze `n x n` i inicjalizuje jej wartosci na 0.
     /// 
     /// @param n Rozmiar macierzy.
     Matrix(int n);
 
-    /// Konstruktor przeciazeniowy z tablica.
+    /// Konstruktor przeciazony z tablica.
     /// 
     /// Alokuje pamiec dla macierzy o rozmiarze `n x n` i przepisuje dane z tablicy `t`.
     /// 
@@ -70,7 +70,7 @@ public:
 
     /// Odwraca macierz (zamienia wiersze z kolumnami).
     /// 
-    /// @return Referencja do obiektu macierzy po odwróceniu.
+    /// @return Referencja do obiektu macierzy po odwroceniu.
     Matrix& Macierz_Odwroc();
 
     /// Wypelnia macierz losowymi wartosciami w zakresie od 0 do 9.
@@ -183,11 +183,69 @@ public:
     /// @return Nowa macierz po odjeciu.
     friend Matrix operator-(int a, Matrix& m);
 
-    /// Operator przypisania.
+    /// Operator inkrementacji (zwieksza kazda liczbe w macierzy o 1).
     /// 
-    /// Kopiuje zawartosc jednej macierzy do drugiej.
+    /// @param a Macierz, ktora ma byc inkrementowana.
+    /// @return Referencja do obiektu macierzy po inkrementacji.
+    Matrix& operator++(int);
+
+    /// Operator dekrementacji (zmniejsza kazda liczbe w macierzy o 1).
     /// 
-    /// @param m Macierz do skopiowania.
-    /// @return Referencja do obiektu po przypisaniu.
-    Matrix& operator=(const Matrix& m);
+    /// @param a Macierz, ktora ma byc dekrementowana.
+    /// @return Referencja do obiektu macierzy po dekrementacji.
+    Matrix& operator--(int);
+
+    /// Operator dodawania liczby calkowitej do kazdego elementu macierzy.
+    /// 
+    /// @param a Liczba calkowita do dodania.
+    /// @return Referencja do obiektu macierzy po dodaniu liczby.
+    Matrix& operator+=(int a);
+
+    /// Operator odejmowania liczby calkowitej od kazdego elementu macierzy.
+    /// 
+    /// @param a Liczba calkowita do odjecia.
+    /// @return Referencja do obiektu macierzy po odjeciu liczby.
+    Matrix& operator-=(int a);
+
+    /// Operator mnozenia kazdego elementu macierzy przez liczbe calkowita.
+    /// 
+    /// @param a Liczba calkowita do mnozenia.
+    /// @return Referencja do obiektu macierzy po mnozeniu przez liczbe.
+    Matrix& operator*=(int a);
+
+    /// Operator powiekszania macierzy o czesc ca³kowita liczby zmiennoprzecinkowej.
+    /// 
+    /// @param a Liczba zmiennoprzecinkowa.
+    /// @return Referencja do obiektu macierzy po powiekszeniu.
+    
+    Matrix& operator+=(double a);
+
+    /// Operator wypisania macierzy na ekran.
+    /// 
+    /// @param o Strumien wyjsciowy.
+    /// @param m Macierz do wypisania.
+    /// @return Strumien wyjœciowy.
+    friend std::ostream& operator<<(std::ostream& o, Matrix& m);
+
+    /// Operator porownania macierzy.
+    /// 
+    /// @param m Macierz do porownania.
+    /// @return `true` jesli macierze sa rowne, w przeciwnym razie `false`.
+    bool operator==(const Matrix& m);
+
+    /// Operator porownania, czy jedna macierz jest wieksza od drugiej.
+    /// 
+    /// @param m Macierz do porownania.
+    /// @return `true` jesli wszystkie elementy macierzy sa wieksze, w przeciwnym razie `false`.
+    bool operator>(const Matrix& m);
+
+    /// Operator porownania, czy jedna macierz jest mniejsza od drugiej.
+    /// 
+    /// @param m Macierz do porownania.
+    /// @return `true` jesli wszystkie elementy macierzy sa mniejsze, w przeciwnym razie `false`.
+    bool operator<(const Matrix& m);
+
+	/// @parm Metoda do wczytania macierzy z pliku
+	/// @return Macierzœœ wczytana z pliku
+    Matrix& wczytaj_z_pliku(const std::string& nazwa);
 };

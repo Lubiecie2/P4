@@ -351,6 +351,49 @@ int main()
     std::cout << std::endl;
 
 	// ----------------- Koniec Macierz dodawanie -----------------
+	// ----------------- Macierz mnozenie macierz * macierz -----------------
+    std::cout << "***********************************" << std::endl;
+    cout << "mnozenie macierzy: " << endl;
+
+    cout << "Macierz 1 przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, i + j);
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "Macierz 2 przed operacja: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz2.wstaw(i, j, (i + j) * 2);
+            cout << macierz2.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    macierz = macierz * macierz2;
+
+    cout << "Po operacji mnozenia: " << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+
+    std::cout << "***********************************" << std::endl;
+    std::cout << std::endl;
+
+	// ----------------- Koniec Macierz mnozenie macierz * macierz -----------------
+	// ----------------- Macierz odejmowanie macierz - macierz -----------------
+ 
+
+
+	// ----------------- Macierz koniec odejmowania macierz - macierz -----------------
 	// ----------------- Macierz mnozenie -----------------
 
     std::cout << "***********************************" << std::endl;
