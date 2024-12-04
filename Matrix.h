@@ -3,69 +3,69 @@
 
 /**
  * @class Matrix
- * @brief Klasa reprezentuj¹ca macierz kwadratow¹.
+ * @brief Klasa reprezentujaca macierz kwadratowa.
  *
  * Klasa ta pozwala na tworzenie i manipulowanie macierzami kwadratowymi
- * o dynamicznie alokowanej pamiêci. Zawiera metody umo¿liwiaj¹ce wykonywanie
- * ró¿nych operacji na macierzach, takich jak dodawanie, mno¿enie, wstawianie
- * wartoœci, czy odwracanie macierzy.
+ * o dynamicznie alokowanej pamieci. Zawiera metody umozliwiajace wykonywanie
+ * roznych operacji na macierzach, takich jak dodawanie, mnozenie, wstawianie
+ * wartosci, czy odwracanie macierzy.
  */
 class Matrix {
 public:
-    int** wsm;    ///< WskaŸnik na tablicê dwuwymiarow¹ przechowuj¹c¹ macierz.
+    int** wsm;    ///< Wskaznik na tablice dwuwymiarowa przechowujaca macierz.
     int rozmiar;  ///< Rozmiar macierzy (liczba wierszy/kolumn).
 
-    /// Konstruktor domyœlny.
+    /// Konstruktor domyslny.
     /// 
-    /// Inicjalizuje wskaŸnik `wsm` na `nullptr` i rozmiar macierzy na 0.
-    /// Nie alokuje pamiêci dla macierzy.
+    /// Inicjalizuje wskaznik `wsm` na `nullptr` i rozmiar macierzy na 0.
+    /// Nie alokuje pamieci dla macierzy.
     Matrix();
 
-    /// Konstruktor przeci¹¿eniowy.
+    /// Konstruktor przeciazeniowy.
     /// 
-    /// Alokuje pamiêæ dla macierzy o rozmiarze `n x n` i inicjalizuje jej wartoœci na 0.
+    /// Alokuje pamiec dla macierzy o rozmiarze `n x n` i inicjalizuje jej wartosci na 0.
     /// 
     /// @param n Rozmiar macierzy.
     Matrix(int n);
 
-    /// Konstruktor przeci¹¿eniowy z tablic¹.
+    /// Konstruktor przeciazeniowy z tablica.
     /// 
-    /// Alokuje pamiêæ dla macierzy o rozmiarze `n x n` i przepisuje dane z tablicy `t`.
+    /// Alokuje pamiec dla macierzy o rozmiarze `n x n` i przepisuje dane z tablicy `t`.
     /// 
     /// @param n Rozmiar macierzy.
-    /// @param t Tablica zawieraj¹ca dane do przypisania do macierzy.
+    /// @param t Tablica zawierajaca dane do przypisania do macierzy.
     Matrix(int n, int* t);
 
-    /// Konstruktor kopiuj¹cy.
+    /// Konstruktor kopiujacy.
     /// 
-    /// Tworzy kopiê macierzy `m`, alokuj¹c now¹ pamiêæ i kopiuj¹c jej zawartoœæ.
+    /// Tworzy kopie macierzy `m`, alokujac nowa pamiec i kopiujac jej zawartosc.
     /// 
-    /// @param m Macierz, która ma zostaæ skopiowana.
+    /// @param m Macierz, ktora ma zostac skopiowana.
     Matrix(const Matrix& m);
 
     /// Destruktor.
     /// 
-    /// Zwalnia pamiêæ zajmowan¹ przez macierz.
+    /// Zwalnia pamiec zajmowana przez macierz.
     ~Matrix();
 
-    /// Alokuje pamiêæ dla macierzy o rozmiarze `n x n` jeœli pamiêæ nie by³a wczeœniej alokowana,
-    /// lub w razie potrzeby zmienia rozmiar ju¿ zaalokowanej macierzy.
+    /// Alokuje pamiec dla macierzy o rozmiarze `n x n` jesli pamiec nie byla wczesniej alokowana,
+    /// lub w razie potrzeby zmienia rozmiar juz zaalokowanej macierzy.
     /// 
     /// @param n Nowy rozmiar macierzy.
     Matrix& Macierz_Alokacja(int n);
 
-    /// Wstawia wartoœæ `wartosc` do macierzy na pozycjê (x, y).
+    /// Wstawia wartosc `wartosc` do macierzy na pozycje (x, y).
     /// 
     /// @param x Indeks wiersza.
     /// @param y Indeks kolumny.
-    /// @param wartosc Wartoœæ do wstawienia.
+    /// @param wartosc Wartosc do wstawienia.
     Matrix& wstaw(int x, int y, int wartosc);
 
-    /// Zwraca wartoœæ elementu macierzy na pozycji (x, y).
+    /// Zwraca wartosc elementu macierzy na pozycji (x, y).
     /// 
     /// @param x Indeks wiersza.
     /// @param y Indeks kolumny.
-    /// @return Wartoœæ elementu na pozycji (x, y).
+    /// @return Wartosc elementu na pozycji (x, y).
     int pokaz(int x, int y);
 
     /// Odwraca macierz (zamienia wiersze z kolumnami).
@@ -73,179 +73,121 @@ public:
     /// @return Referencja do obiektu macierzy po odwróceniu.
     Matrix& Macierz_Odwroc();
 
-    /// Wype³nia macierz losowymi wartoœciami w zakresie od 0 do 9.
+    /// Wypelnia macierz losowymi wartosciami w zakresie od 0 do 9.
     /// 
-    /// @return Referencja do obiektu macierzy po wype³nieniu.
+    /// @return Referencja do obiektu macierzy po wypelnieniu.
     Matrix& losuj();
 
-    /// Losuje `x` wartoœci w macierzy i umieszcza je w losowych miejscach.
+    /// Losuje `x` wartosci w macierzy i umieszcza je w losowych miejscach.
     /// 
-    /// @param x Liczba losowanych wartoœci.
+    /// @param x Liczba losowanych wartosci.
     /// @return Referencja do obiektu macierzy po losowaniu.
     Matrix& losuj(int x);
 
-    /// Ustawia wartoœci na przek¹tnej macierzy z tablicy `t`, a pozosta³e elementy ustawia na 0.
+    /// Ustawia wartosci na przekatnej macierzy z tablicy `t`, a pozostale elementy ustawia na 0.
     /// 
-    /// @param t Tablica z danymi do ustawienia na przek¹tnej.
-    /// @return Referencja do obiektu macierzy po ustawieniu przek¹tnej.
+    /// @param t Tablica z danymi do ustawienia na przekatnej.
+    /// @return Referencja do obiektu macierzy po ustawieniu przekatnej.
     Matrix& diagonalna(int* t);
 
-    /// Ustawia wartoœci na k-tej przek¹tnej macierzy z tablicy `t`, a pozosta³e elementy ustawia na 0.
-    /// Parametr `k` okreœla przesuniêcie przek¹tnej w górê lub w dó³.
+    /// Ustawia wartosci na k-tej przekatnej macierzy z tablicy `t`, a pozostale elementy ustawia na 0.
+    /// Parametr `k` okresla przesuniecie przekatnej w gore lub w dol.
     /// 
-    /// @param k Przesuniêcie przek¹tnej.
-    /// @param t Tablica z danymi do ustawienia na przek¹tnej.
-    /// @return Referencja do obiektu macierzy po ustawieniu k-tej przek¹tnej.
+    /// @param k Przesuniecie przekatnej.
+    /// @param t Tablica z danymi do ustawienia na przekatnej.
+    /// @return Referencja do obiektu macierzy po ustawieniu k-tej przekatnej.
     Matrix& diagonalna_k(int k, int* t);
 
-    /// Wstawia wartoœci z tablicy `t` do kolumny o indeksie `x`.
+    /// Wstawia wartosci z tablicy `t` do kolumny o indeksie `x`.
     /// 
     /// @param x Indeks kolumny.
     /// @param t Tablica z danymi do wstawienia do kolumny.
-    /// @return Referencja do obiektu macierzy po wstawieniu wartoœci do kolumny.
+    /// @return Referencja do obiektu macierzy po wstawieniu wartosci do kolumny.
     Matrix& kolumna(int x, int* t);
 
-    /// Wstawia wartoœci z tablicy `t` do wiersza o indeksie `y`.
+    /// Wstawia wartosci z tablicy `t` do wiersza o indeksie `y`.
     /// 
     /// @param y Indeks wiersza.
     /// @param t Tablica z danymi do wstawienia do wiersza.
-    /// @return Referencja do obiektu macierzy po wstawieniu wartoœci do wiersza.
+    /// @return Referencja do obiektu macierzy po wstawieniu wartosci do wiersza.
     Matrix& wiersz(int y, int* t);
 
-    /// Wype³nia macierz tak, ¿e 1 znajduje siê na przek¹tnej, a pozosta³e elementy to 0.
+    /// Wypelnia macierz tak, ze 1 znajduje sie na przekatnej, a pozostale elementy to 0.
     /// 
-    /// @return Referencja do obiektu macierzy po uzupe³nieniu.
+    /// @return Referencja do obiektu macierzy po uzupelnieniu.
     Matrix& przekatna(void);
 
-    /// Wype³nia macierz tak, ¿e 1 znajduje siê poni¿ej przek¹tnej, a pozosta³e elementy to 0.
+    /// Wypelnia macierz tak, ze 1 znajduje sie ponizej przekatnej, a pozostale elementy to 0.
     /// 
-    /// @return Referencja do obiektu macierzy po uzupe³nieniu.
+    /// @return Referencja do obiektu macierzy po uzupelnieniu.
     Matrix& pod_przekatna(void);
 
-    /// Wype³nia macierz tak, ¿e 1 znajduje siê powy¿ej przek¹tnej, a pozosta³e elementy to 0.
+    /// Wypelnia macierz tak, ze 1 znajduje sie powyzej przekatnej, a pozostale elementy to 0.
     /// 
-    /// @return Referencja do obiektu macierzy po uzupe³nieniu.
+    /// @return Referencja do obiektu macierzy po uzupelnieniu.
     Matrix& nad_przekatna(void);
 
-    /// Wype³nia macierz w sposób przypominaj¹cy szachownicê.
+    /// Wypelnia macierz w sposob przypominajacy szachownice.
     /// 
-    /// @return Referencja do obiektu macierzy po uzupe³nieniu.
+    /// @return Referencja do obiektu macierzy po uzupelnieniu.
     Matrix& szachownica(void);
 
-    /// Operator dodawania dwóch macierzy.
+    /// Operator dodawania dwoch macierzy.
     /// 
     /// @param m Druga macierz do dodania.
     /// @return Referencja do obiektu macierzy po dodaniu.
     Matrix& operator+(Matrix& m);
 
-    /// Operator mno¿enia dwóch macierzy.
+    /// Operator mnozenia dwoch macierzy.
     /// 
-    /// @param m Druga macierz do mno¿enia.
-    /// @return Referencja do obiektu macierzy po pomno¿eniu.
+    /// @param m Druga macierz do mnozenia.
+    /// @return Referencja do obiektu macierzy po pomnozeniu.
     Matrix& operator*(Matrix& m);
 
-    /// Operator dodawania macierzy i liczby ca³kowitej.
+    /// Operator dodawania macierzy i liczby calkowitej.
     /// 
-    /// @param a Liczba ca³kowita do dodania.
+    /// @param a Liczba calkowita do dodania.
     /// @return Referencja do obiektu macierzy po dodaniu liczby.
     Matrix& operator+(int a);
 
-    /// Operator mno¿enia macierzy przez liczbê ca³kowit¹.
+    /// Operator mnozenia macierzy przez liczbe calkowita.
     /// 
-    /// @param a Liczba ca³kowita do pomno¿enia.
-    /// @return Referencja do obiektu macierzy po pomno¿eniu przez liczbê.
+    /// @param a Liczba calkowita do pomnozenia.
+    /// @return Referencja do obiektu macierzy po pomnozeniu przez liczbe.
     Matrix& operator*(int a);
 
-    /// Operator odejmowania liczby ca³kowitej od macierzy.
+    /// Operator odejmowania liczby calkowitej od macierzy.
     /// 
-    /// @param a Liczba ca³kowita do odjêcia.
-    /// @return Referencja do obiektu macierzy po odjêciu liczby.
+    /// @param a Liczba calkowita do odjecia.
+    /// @return Referencja do obiektu macierzy po odjeciu liczby.
     Matrix& operator-(int a);
 
-    /// Operator dodawania liczby ca³kowitej do macierzy.
+    /// Operator dodawania liczby calkowitej do macierzy.
     /// 
-    /// @param a Liczba ca³kowita do dodania.
-    /// @param m Macierz do której dodajemy liczbê.
+    /// @param a Liczba calkowita do dodania.
+    /// @param m Macierz do ktorej dodajemy liczbe.
     /// @return Nowa macierz po dodaniu liczby.
     friend Matrix operator+(int a, Matrix& m);
 
-    /// Operator mno¿enia liczby ca³kowitej przez macierz.
+    /// Operator mnozenia liczby calkowitej przez macierz.
     /// 
-    /// @param a Liczba ca³kowita do pomno¿enia.
-    /// @param m Macierz, któr¹ mno¿ymy przez liczbê.
-    /// @return Nowa macierz po pomno¿eniu.
+    /// @param a Liczba calkowita do pomnozenia.
+    /// @param m Macierz, ktora mnozymy przez liczbe.
+    /// @return Nowa macierz po pomnozeniu.
     friend Matrix operator*(int a, Matrix& m);
 
-    /// Operator odejmowania liczby ca³kowitej od macierzy.
+    /// Operator odejmowania liczby calkowitej od macierzy.
     /// 
-    /// @param a Liczba ca³kowita do odjêcia.
-    /// @param m Macierz, od której odejmujemy liczbê.
-    /// @return Nowa macierz po odjêciu.
+    /// @param a Liczba calkowita do odjecia.
+    /// @param m Macierz, od ktorej odejmujemy liczbe.
+    /// @return Nowa macierz po odjeciu.
     friend Matrix operator-(int a, Matrix& m);
 
-    /// Operator inkrementacji (zwiêksza ka¿d¹ liczbê w macierzy o 1).
+    /// Operator przypisania.
     /// 
-    /// @param a Macierz, która ma byæ inkrementowana.
-    /// @return Referencja do obiektu macierzy po inkrementacji.
-    Matrix& operator++(int);
-
-    /// Operator dekrementacji (zmniejsza ka¿d¹ liczbê w macierzy o 1).
+    /// Kopiuje zawartosc jednej macierzy do drugiej.
     /// 
-    /// @param a Macierz, która ma byæ dekrementowana.
-    /// @return Referencja do obiektu macierzy po dekrementacji.
-    Matrix& operator--(int);
-
-    /// Operator dodawania liczby ca³kowitej do ka¿dego elementu macierzy.
-    /// 
-    /// @param a Liczba ca³kowita do dodania.
-    /// @return Referencja do obiektu macierzy po dodaniu liczby.
-    Matrix& operator+=(int a);
-
-    /// Operator odejmowania liczby ca³kowitej od ka¿dego elementu macierzy.
-    /// 
-    /// @param a Liczba ca³kowita do odjêcia.
-    /// @return Referencja do obiektu macierzy po odjêciu liczby.
-    Matrix& operator-=(int a);
-
-    /// Operator mno¿enia ka¿dego elementu macierzy przez liczbê ca³kowit¹.
-    /// 
-    /// @param a Liczba ca³kowita do mno¿enia.
-    /// @return Referencja do obiektu macierzy po mno¿eniu przez liczbê.
-    Matrix& operator*=(int a);
-
-    /// Operator powiêkszania macierzy o czêœæ ca³kowit¹ liczby zmiennoprzecinkowej.
-    /// 
-    /// @param a Liczba zmiennoprzecinkowa.
-    /// @return Referencja do obiektu macierzy po powiêkszeniu.
-    
-    //Matrix& operator(double a);
-
-    /// Operator wypisania macierzy na ekran.
-    /// 
-    /// @param o Strumieñ wyjœciowy.
-    /// @param m Macierz do wypisania.
-    /// @return Strumieñ wyjœciowy.
-    friend std::ostream& operator<<(std::ostream& o, Matrix& m);
-
-    /// Operator porównania macierzy.
-    /// 
-    /// @param m Macierz do porównania.
-    /// @return `true` jeœli macierze s¹ równe, w przeciwnym razie `false`.
-    bool operator==(const Matrix& m);
-
-    /// Operator porównania, czy jedna macierz jest wiêksza od drugiej.
-    /// 
-    /// @param m Macierz do porównania.
-    /// @return `true` jeœli wszystkie elementy macierzy s¹ wiêksze, w przeciwnym razie `false`.
-    bool operator>(const Matrix& m);
-
-    /// Operator porównania, czy jedna macierz jest mniejsza od drugiej.
-    /// 
-    /// @param m Macierz do porównania.
-    /// @return `true` jeœli wszystkie elementy macierzy s¹ mniejsze, w przeciwnym razie `false`.
-    bool operator<(const Matrix& m);
-
-	/// @parm Metoda do wczytania macierzy z pliku
-	/// @return Macierz wczytana z pliku
-    Matrix& wczytaj_z_pliku(const std::string& nazwa);
+    /// @param m Macierz do skopiowania.
+    /// @return Referencja do obiektu po przypisaniu.
+    Matrix& operator=(const Matrix& m);
 };
