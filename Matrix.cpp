@@ -120,7 +120,7 @@ Matrix& Matrix::losuj() {
             wsm[i][j] = std::rand() % 10;  // <--- Losujemy liczby z zakresu 0-9
         }
     }
-    return *this;  // Zwracamy referencje do obiektu
+    return *this;  
 }
 
 Matrix& Matrix::losuj(int x) {

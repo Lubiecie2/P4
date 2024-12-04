@@ -475,7 +475,7 @@ int main()
 	// ----------------- Koniec Friend functions -----------------
 	// ----------------- Porownanie macierzy -----------------
     std::cout << "***********************************" << std::endl;
-	std::cout << "Poronanie macierzy:\n";
+	std::cout << "Porownanie macierzy:\n";
 	std::cout << "Macierz1:\n";
  
     Matrix mc1(3);
