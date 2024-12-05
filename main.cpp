@@ -38,16 +38,34 @@ int main()
 	// ----------------- Koniec Macierz wstawianie 5 na pozycje 1,1 -----------------
 	// ----------------- Macierz odwracanie -----------------
 
-	cout << "Odwrocenie macierzy: " << endl;
-	macierz.Macierz_Odwroc();
-	cout << "Macierz wyglada nastepujaco: " << endl;
-	for (int i = 0; i < 5; i++) {  
-		for (int j = 0; j < 5; j++) { 
-			cout << macierz.pokaz(i, j) << " ";
-		}
-		cout << endl;
-	}
+    int liczba = 10;
+    
+	std::cout << "***********************************" << std::endl;
+	std::cout << "Macierz odwracanie:" << std::endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            macierz.wstaw(i, j, liczba); 
+            liczba++;                    
+        }
+    }
+    cout << "Przed operacja:" << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+    macierz.Macierz_Odwroc();
+    std::cout << std::endl;
 
+    cout << "Po operacji:" << endl;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cout << macierz.pokaz(i, j) << " ";
+        }
+        cout << endl;
+    }
+	std::cout << "***********************************" << std::endl;
 	// ----------------- Koniec Macierz odwracanie -----------------
 	// ----------------- Macierz zamiana pierwszej kolumny -----------------
 
@@ -152,7 +170,6 @@ int main()
     std::cout << std::endl;
 
     // ----------------- Koniec Macierz losowa ----------------- 
-    
 	// ----------------- Macierz powiekszona o 1 -----------------
 
     std::cout << "***********************************" << std::endl;
@@ -389,11 +406,6 @@ int main()
     std::cout << std::endl;
 
 	// ----------------- Koniec Macierz mnozenie macierz * macierz -----------------
-	// ----------------- Macierz odejmowanie macierz - macierz -----------------
- 
-
-
-	// ----------------- Macierz koniec odejmowania macierz - macierz -----------------
 	// ----------------- Macierz mnozenie -----------------
 
     std::cout << "***********************************" << std::endl;

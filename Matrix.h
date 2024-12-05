@@ -246,6 +246,6 @@ public:
     bool operator<(const Matrix& m);
 
 	/// @parm Metoda do wczytania macierzy z pliku
-	/// @return Macierzœœ wczytana z pliku
+	/// @return Macierz wczytana z pliku
     Matrix& wczytaj_z_pliku(const std::string& nazwa);
 };
