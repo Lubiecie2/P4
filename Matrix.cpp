@@ -9,7 +9,7 @@
 Matrix::Matrix() : wsm(nullptr), rozmiar(0) {}     // <--- Konstruktor domyslny 
 
 Matrix::Matrix(int n) : wsm(nullptr), rozmiar(0) {     // <--- Konstruktor alokujacy pamiec.
-    if (n > 0) {  
+	if (n > 0) {  // <--- Sprawdzenie czy rozmiar macierzy jest wiekszy od 0
 		rozmiar = n; // <--- Przypisanie rozmiaru macierzy
 		wsm = new int* [rozmiar];  // <--- Alokacja pamieci dla wierszy
 		for (int i = 0; i < rozmiar; ++i) {  // <--- Petla alokujaca pamiec dla kolumn
@@ -383,10 +383,6 @@ if (rozmiar != m.rozmiar) {
 	return true; // <--- Wszystkie elementy s¹ mniejsze
 
 }
-
-//Matrix& Matrix::operator(double) {
-
-//}
 
 bool Matrix::operator==(const Matrix& m) {
 	
